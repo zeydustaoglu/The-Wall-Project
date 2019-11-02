@@ -20,10 +20,10 @@
 
 ### Example mockups
 
-![image1](./mock1.jpeg)
+![image1](./mock1.jpg)
 
-![image2](./mock2.jpeg)
+![image2](./mock2.jpg)
 
-![image3](./mock3.jpeg)
+![image3](./mock3.jpg)
 
 Good luck!
