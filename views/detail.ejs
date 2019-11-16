@@ -1,0 +1,75 @@
+<%- include('partials/header') %>
+<%if(typeof post !=='undefined' && post !== null){%>
+
+    <main class="main-container">
+      <div class="main-content">
+    
+        <header class="header bg-ui-general">
+          <div class="header-info">
+            <h1 class="header-title">
+              <strong>Post</strong> Title
+              <small><%= post.autherName%></small>
+            </h1>
+          </div>
+        </header>
+    
+    
+        <div class="col-md-12">
+          <div class="card">
+            <figure class="img-hov-zoomin">
+              <img src="images/post-image.png" alt="...">
+            </figure>
+    
+            <div class="card-body">
+              <h4>
+                <a class="text-light" href="#">
+                  <span class="fw-500 "><%= post.autherName%></span>
+                </a>
+              </h4>
+    
+              <h4><a href="#">
+                <%=post.title %>
+                </a></h4>
+              <p><time>
+                <%= post.dateTime%>
+                </time></p>
+    
+              <p>
+                <%=post.content%>
+              </p>
+    
+              <div class="flexbox align-items-center mt-3" style="float: right;">
+    
+                <div class="gap-items-4">
+                  <a href="#">
+                    <i class="fa fa-eye text-danger fs-20"></i>
+                    <span class="fs-11 text-fade ml-1">
+                      <%= post.views %>
+                    </span>
+                  </a>
+                  <a href="/like/<%=post._id%>">
+                    <i class="fa fa-thumbs-o-up text-danger fs-20"></i>
+                    <span class="fs-11 text-fade ml-1">
+                      <%= post.likes%>
+                    </span>
+                  </a>
+                  <a href="/dislike/<%=post._id%>">
+                    <i class="fa fa-thumbs-o-down text-danger fs-20"></i>
+                    <span class="fs-11 text-fade ml-1">
+                      <%= post.dislikes %>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+    
+      <%- include('partials/footer') %>
+    </main>
+    
+    <%}%>   
+  
+

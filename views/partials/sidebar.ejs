@@ -1,0 +1,68 @@
+<aside class="sidebar sidebar-expand-lg sidebar-light">
+        <header class="sidebar-header bg-danger">
+       
+          <span class="logo">
+            <a href="/">
+              <img style="max-width: 90%;" src="images/thewall.png">
+            </a>
+          </span>
+        </header>
+  
+        <nav class="sidebar-navigation ps-container ps-theme-default ps-active-y" data-ps-id="6a2d3280-0bef-42de-7f25-67b23a5f7105">
+          <ul class="menu">
+  
+            <li class="menu-item">
+              <a class="menu-link" href="/">
+                <span class="icon fa fa-home"></span>
+                <span class="title">Home</span>
+              </a>
+            </li>
+  
+            <li class="menu-item">
+              <a class="menu-link" href="/users">
+                <span class="icon fa fa-users"></span>
+                <span class="title">Authors</span>
+               
+              </a>  
+    
+            </li>
+  
+            <li class="menu-item open">
+              <a class="menu-link" href="#">
+                <span class="icon fa fa-navicon"></span>
+                <span class="title">Post Types</span>
+                <span class="arrow"></span>
+              </a>
+  
+              <ul class="menu-submenu">
+                  <% postTypes.forEach(function(postTypes){%>
+                <li class="menu-item">
+                  <a class="menu-link" href="/<%=postTypes.postTypeName%>">
+                    <span class="dot"></span>
+                    <span class="title"><%= postTypes.postTypeName %></span>
+                  </a>
+                </li>
+                  <%})%>
+            
+              </ul>
+            </li>
+            <li class="menu-category"></li>
+
+            <li class="menu-item">
+              <a class="menu-link" href="/profile">
+                <span class="icon fa fa-user"></span>
+                <span class="title">Profile</span>
+              </a>  
+            </li>
+          
+            <li class="menu-item">
+              <a class="menu-link" href="/logout">
+                <span class="icon fa fa-power-off"></span>
+                <span class="title">Logout</span>
+              </a>  
+            </li>
+
+          </ul>
+        <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 636px; right: 2px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 302px;"></div></div></nav>
+  
+      </aside>

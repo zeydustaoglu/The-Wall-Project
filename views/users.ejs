@@ -1,0 +1,43 @@
+<%- include('partials/header') %>
+
+<main class="main-container">
+    <div class="main-content">
+
+        <header class="header bg-ui-general">
+            <div class="header-info">
+                <h1 class="header-title">
+                    <strong>Authors</strong>
+                    <small>Pre designed block of data to use in your web app.</small>
+                </h1>
+            </div>
+        </header>
+
+        <div class="row">
+                <% users.forEach(function(user){%>
+                    <div class="col-md-6 col-lg-4">
+                            <div class="card">
+                                <div class="text-white card-body bg-danger py-60">
+                                    <div class="flexbox">
+                                        <a href="#">
+                                            <img class="avatar avatar-xxl avatar-bordered" src="images/user.png">
+                                        </a>
+                                        <div class="flex-grow pl-20">
+                                            <h4><a class="text-white" href="#"><%=user.username%></a></h4>
+                                            <div><i class="fa fa-fw fa-map-marker w-20px"></i> <%=user.email%></div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                            </div>
+                        </div>
+                      
+                    <%})%>
+         
+        </div>
+
+
+    </div>
+
+    <%- include('partials/footer') %>
+</main>

@@ -1,0 +1,50 @@
+<%- include('partials/loginHeader') %>
+<div class="card card-round card-shadowed px-50 py-30 w-400px mb-0" style="max-width: 100%;">
+  <h5 class="text-uppercase">Sign up</h5>
+  <br>
+
+  <form action="/register" method="POST" class="form-type-material">
+    <div class="form-group">
+      <input type="text" class="form-control" name="username" id="username">
+      <label for="username">Username</label>
+    </div>
+
+    <div class="form-group">
+      <input type="text" class="form-control" name="email" id="email">
+      <label for="email">Email address</label>
+    </div>
+
+    <div class="form-group">
+      <input type="password" class="form-control" name="password" id="password">
+      <label for="password">Password</label>
+    </div>
+
+    <div class="form-group">
+      <input type="password" class="form-control" name="passwordconf" id="password-conf">
+      <label for="password-conf">Password (confirm)</label>
+    </div>
+
+    <br>
+    <button class="btn btn-bold btn-block btn-primary" type="submit">Register</button>
+  </form>
+
+
+  <div class="divider">Or Sign Up With</div>
+  <div class="text-center">
+    <a class="btn btn-square btn-facebook" href="#"><i class="fa fa-facebook"></i></a>
+    <a class="btn btn-square btn-google" href="/auth/google"><i class="fa fa-google"></i></a>
+    <a class="btn btn-square btn-twitter" href="#"><i class="fa fa-twitter"></i></a>
+  </div>
+
+
+  <% if(isFalse === "true"){%>
+  <p class="text-center text-danger fs-13 mt-20"><strong>Password confirm is incorrect!</strong></p>
+  <%}%>
+          
+  <% if(err !== null){%>
+  <p class="text-center text-danger fs-13 mt-20"><strong><%=err%></strong></p>
+  <%}%> 
+  <p class="text-center text-muted fs-13 mt-20">Already have an account? <a class="text-primary fw-500" href="/login">Sign in</a></p>
+          </div>      
+          <%- include('partials/loginFooter') %>
+  </body>

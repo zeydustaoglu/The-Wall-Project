@@ -1,0 +1,163 @@
+<%- include('partials/header') %>
+<main class="main-container">
+
+  <header class="header bg-img">
+    <div class="col-12">
+      <div class="card card-inverse bg-img"
+        style="background-image: url(images/profile-header.jpeg); padding-top: 150px;margin-top:20px ;">
+        <div class="flexbox align-items-center px-20" data-overlay="4">
+          <div class="flexbox align-items-center mr-auto">
+            <a href="#">
+              <img class="avatar avatar-xl avatar-bordered" src="images/user.png">
+            </a>
+            <div class="pl-12 d-none d-md-block">
+              <h5 class="mb-0"><a class="hover-primary text-white" href="#"> <%=user.username%> </a></h5>
+              <span>Web Designer</span>
+            </div>
+          </div>
+
+          <ul class="flexbox flex-justified text-center py-20">
+            <li class="px-10">
+              <span class="opacity-60">Posts</span><br>
+              <span class="fs-22"><%=totalPosts%></span>
+            </li>
+            <li class="px-10">
+              <span class="opacity-60">Views</span><br>
+              <span class="fs-22"><%=totalViews%></span>
+            </li>
+            <li class="pl-10">
+              <span class="opacity-60">Likes</span><br>
+              <span class="fs-22"><%=totalLikes%></span>
+            </li>
+
+          </ul>
+        </div>
+
+      </div>
+      <div class="header-action bg-white">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#timeline">Timeline</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " data-toggle="tab" href="#new-post">New Post</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-content">
+    <div class="tab-content">
+
+
+      <div class="tab-pane fade active show" id="timeline">
+        <%if(typeof posts !=='undefined' && posts !== null){%>
+        <% posts.forEach(function(post){%>
+        <div class="col-12">
+          <div class="card">
+            <div class="row no-gutters">
+              <a class="col-4 bg-img d-none d-md-block" style="background-image: url(<%=post.imageUrl%>)"
+                href="/<%=post._id%>"></a>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-9">
+                      <h5><a class="hover-primary text-uppercase fs-15 fw-400 ls-1"
+                          href="/<%=post._id%>"><%=post.title%></a> <small> &nbsp;<a href="/<%=post.tagName%>">
+                            <%=post.tagName%></a></small>
+                      </h5>
+                      <hr class="w-50px ml-0 bt-2 border-danger hr-sm">
+                    </div>
+
+                    <div class="col-md-3">
+                      <p style="float: right;"> <%=post.dateTime%></p>
+                    </div>
+                  </div>
+
+                  <p><%=post.content%></p>
+
+                  <div class="flexbox align-items-center mt-3">
+                    <div class="col-md-3">
+                      <a class="text-light" href="#">
+                        <img class="avatar avatar-sm" src="images/user.png" alt="...">
+                        <span class="fw-500 ml-2"><%=post.autherName%></span>
+                      </a>
+                    </div>
+                    <div class="col-md-6"></div>
+                    <div class="col-md-3">
+                      <a href="#" style="padding:2px">
+                        <i class="fa fa-eye text-danger fs-20"></i>
+                        <span class="fs-11 text-fade ml-1"><%=post.views%></span>
+                      </a>
+                      <a href="/like/<%=post._id%>" style="padding:2px">
+                        <i class="fa fa-thumbs-o-up text-danger fs-20"></i>
+                        <span class="fs-11 text-fade ml-1"><%=post.likes%></span>
+                      </a>
+                      <a href="/dislike/<%=post._id%>" style="padding:2px">
+                        <i class="fa fa-thumbs-o-down text-danger fs-20"></i>
+                        <span class="fs-11 text-fade ml-1"><%=post.dislikes%></span>
+                      </a>
+                      <a href="/delpost/<%=post._id%>" title="delete" style="padding:2px">
+                        <i class="fa fa-trash-o text-danger fs-20"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <%})%>
+        <%}%>        
+      </div>
+
+      <div class="tab-pane fade " id="new-post">
+        <div class="card">
+          <div class="card-body">
+            <p class="text-danger "> <%= typeof errmessage != 'undefined' ? errmessage : '' %></p>
+        <form action="/profile" method="POST" enctype="multipart/form-data">
+          <label for="input-normal">Post Image</label>
+          <div class="input-group file-group">
+            <input type="text" class="form-control file-value" placeholder="Choose image..." readonly="">
+            <input type="file" name="myImage">
+            <span class="input-group-btn">
+              <button class="btn btn-light file-browser" type="button"><i class="fa fa-upload"></i></button>
+            </span>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="input-normal">Post Title</label>
+            <input type="text" class="form-control" id="input-normal" name="postTitle" value="Input value">
+          </div><br>
+
+          <label for="select">Post Type</label>
+          <input type="text" style="display: none" name="username" value="<%=user.username%>">
+          <select class="form-control" name="postType" id="select">
+            <% postTypes.forEach(function(postTypes){%>
+            <option value="<%= postTypes.postTypeName %>"><%= postTypes.postTypeName %> </option>
+            <%})%>
+          </select>
+          <br><br>
+          <label for="select">Post Content</label>
+          <div class="publisher publisher-multi bg-white b-1 mb-30">
+            <textarea class="publisher-input auto-expand" rows="4" name="postContent"
+              placeholder="Write something"></textarea>
+          </div>
+          <button type="submit" style="float: right;" class="btn btn-w-md btn-bold btn-danger">Post</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  </div>
+  </div>
+
+  <!--/.main-content -->
+
+  <%- include('partials/footer') %>
+
+</main>

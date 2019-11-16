@@ -1,0 +1,157 @@
+<%- include('partials/header') %>
+
+<%if(typeof post !=='undefined' && post !== null){%>
+<!-- POST DETAIL -->
+<main class="main-container">
+  <div class="main-content">
+
+    <header class="header bg-ui-general">
+      <div class="header-info">
+        <h1 class="header-title">
+          <strong>Post</strong> Title
+          <small><%= post.autherName%></small>
+        </h1>
+      </div>
+    </header>
+
+
+    <div class="col-md-12">
+      <div class="card">
+        <figure class="img-hov-zoomin">
+          <img src="<%=post.imageUrl%>" alt="...">
+        </figure>
+
+        <div class="card-body">
+      
+
+          <h4><a href="#">
+            <%=post.title %>
+            </a> <small> &nbsp;<a  href="/<%=post.tagName%>" >
+              <%=post.tagName%></a></small></h4>
+          <p><time>
+            <%= post.dateTime%>
+            </time></p>
+
+          <p>
+            <%=post.content%>
+          </p>
+
+          <div class="flexbox align-items-center mt-3" style="float: right;">
+
+            <div class="gap-items-4">
+              <a href="#">
+                <i class="fa fa-eye text-danger fs-20"></i>
+                <span class="fs-11 text-fade ml-1">
+                  <%= post.views %>
+                </span>
+              </a>
+              <a href="/like/<%=post._id%>">
+                <i class="fa fa-thumbs-o-up text-danger fs-20"></i>
+                <span class="fs-11 text-fade ml-1">
+                  <%= post.likes%>
+                </span>
+              </a>
+              <a href="/dislike/<%=post._id%>">
+                <i class="fa fa-thumbs-o-down text-danger fs-20"></i>
+                <span class="fs-11 text-fade ml-1">
+                  <%= post.dislikes %>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <%- include('partials/footer') %>
+</main>
+
+<%}%>   
+ 
+<%if(typeof posts !=='undefined' && posts !== null){%>
+
+<main class="main-container">
+  <div class="main-content">
+
+    <header class="header bg-ui-general">
+      <div class="header-info">
+        <h1 class="header-title">
+
+          <strong> <%= typeof pageName != 'undefined' ? pageName : 'All' %></strong> posts
+
+          <small>Welcome <%=user.username%></small>
+        </h1>
+      </div>
+    </header>
+    <% posts.forEach(function(post){%>
+    <div class="col-12">
+      <div class="card">
+        <div class="row no-gutters">
+          <a class="col-4 bg-img d-none d-md-block" style="background-image: url(<%=post.imageUrl%>)"
+            href="/<%=post._id%>"></a>
+          <div class="col-md-8">
+            <div class="card-body">
+              <div class="row">
+                  <div class="col-md-9">
+                      <h5><a class="hover-primary text-uppercase fs-15 fw-400 ls-1" href="/<%=post._id%>"><%=post.title%></a> <small>  &nbsp;<a href="/<%=post.tagName%>"> <%=post.tagName%></a></small>
+                      </h5>
+                      <hr class="w-50px ml-0 bt-2 border-danger hr-sm">
+                  </div>
+                 
+                  <div class="col-md-3">
+                      <p style="float: right;"> <%=post.dateTime%></p>
+                  </div>
+              </div>
+             
+            
+             
+           
+             
+            
+
+              <p><%=post.content%></p>
+
+              <div class="flexbox align-items-center mt-3">
+                <div class="col-md-3">
+                  <a class="text-light" href="#">
+                    <img class="avatar avatar-sm" src="images/user.png" alt="...">
+                    <span class="fw-500 ml-2"><%=post.autherName%></span>
+                  </a>
+                </div>
+                <div class="col-md-6"></div>
+                <div class="col-md-3">
+
+                  <a href="#" style="padding:2px">
+                    <i class="fa fa-eye text-danger fs-20"></i>
+                    <span class="fs-11 text-fade ml-1"><%=post.views%></span>
+                  </a>
+                  <a onclick="like" href="/like/<%=post._id%>" style="padding:2px">
+                    <i class="fa fa-thumbs-o-up text-danger fs-20"></i>
+                    <span class="fs-11 text-fade ml-1"><%=post.likes%></span>
+                  </a>
+                  <a href="/dislike/<%=post._id%>" style="padding:2px">
+                    <i class="fa fa-thumbs-o-down text-danger fs-20"></i>
+                    <span class="fs-11 text-fade ml-1"><%=post.dislikes%></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <%})%>
+
+
+  </div>
+
+  <%- include('partials/footer') %>
+</main>
+<%}%>    
+
+    
+
+ 
